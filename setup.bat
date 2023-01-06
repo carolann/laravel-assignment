@@ -1,6 +1,6 @@
 rem 1. Open the command window and navigate to the cloned site
 rem 2. Run the Composer Install command
-rem composer install
+composer install
 
 rem 3. Copy .env.example to .env
 copy .env.example .env
