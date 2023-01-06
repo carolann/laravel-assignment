@@ -37,4 +37,33 @@
 
 ## Installation instructions
 
-(add your instructions here)
+This installation was done using composer, so it will be starting with composer installed.  
+
+There also a DOS batch file in the repository that can be run and will execute the below steps or, follow these steps to get the site running:
+
+
+1. Open the command window and navigate to the cloned site
+2. Run the Composer Install command
+
+composer install
+
+3. Copy .env.example to .env
+copy .env.example .env
+
+4. generate app_key
+php artisan key:generate
+
+## STOP HERE TO EDIT THE .env FILE
+5. Open the .env file and edit settings if necessary
+6. Edit the DB_HOST and DB_PORT settings on lines 12 and 13, and username and password on lines 15 and 16 if necessary
+7. Assign a new database name to DB_DATABASE on line 14 if necessary
+8. Continue batch
+
+9. Create the database
+php artisan make:database
+
+10. Run migrations and seed the tables
+php artisan migrate:refresh --seed
+
+11. Run tests
+php artisan test
