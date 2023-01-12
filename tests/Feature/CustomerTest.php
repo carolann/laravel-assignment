@@ -1,8 +1,8 @@
 <?php
 
 namespace Tests\Feature;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\User;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 class CustomerTest extends TestCase
 {
@@ -24,7 +24,11 @@ class CustomerTest extends TestCase
     */
     public function test_customer_api(){
         // Test getting api customer query data
-        $response= $this->get("/api/customer/1");
+       $user= Sanctum::actingAs(
+            User::factory()->create(),
+            ['*']
+        );
+        $response=$this->actingAs($user)->post("api/customer",["id"=>1]);
         $response->assertStatus(200);
     }
     /*
@@ -32,7 +36,14 @@ class CustomerTest extends TestCase
     */
     public function test_customer_api_error(){
         // Test generating an error
-        $response= $this->get("/api/customer/400");
+        $user=Sanctum::actingAs(
+           User::factory()->create(),
+           ['*']
+        );
+        $response=$this->actingAs($user)->post("api/customer",["id"=>1]);
+       
+        
+        //$response= $this->get("/api/customer/400");
         $response->assertStatus(404);
       
     }

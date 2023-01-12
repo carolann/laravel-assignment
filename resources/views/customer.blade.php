@@ -26,10 +26,10 @@
         </style>
     </head>
     <body class="antialiased">
-        <form method="POST" action="../loanamountupdate">
+        <form method="POST" action="customer">
+            {{ method_field('PUT') }}
             @csrf
             <!-- Equivalent to... -->
-            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             @foreach($customer as $c)
                 <input type="hidden" name="id" value="{{ $c->id }}" />
                 <table border="1">

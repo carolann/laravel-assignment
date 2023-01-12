@@ -37,7 +37,7 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
-
+/*
         $this->renderable(function (Throwable $e, $request) {
             if ($request->is('api/*')) {
                 if(config("app.debug"))
@@ -61,5 +61,7 @@ class Handler extends ExceptionHandler
                 ], 404);
             }
         });
+        */
     }
+    
 }

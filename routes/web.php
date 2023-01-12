@@ -20,8 +20,5 @@ Route::get('/', function () {
     $customers=App\Models\Customer::all();
     return view('welcome', compact('customers'));
 });
-Route::get("customertransactions/{id}", [CustomerController::class, "all"]);
 
-Route::get("customer/{id}", [CustomerController::class, "index"]);
-
-Route::post("loanamountupdate", [CustomerController::class, "LoanAmountUpdate"]);
+Route::resource('customer', CustomerController::class);
