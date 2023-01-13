@@ -19,8 +19,10 @@ class CustomerController extends BaseController
     */
     public function index()
     {
-        return \App\Models\Customer::has("transactions")->get()->load("transactions");
+        return \App\Models\Customer::all()->load("job");
+      /*  return \App\Models\Customer::has("transactions")->get()->load("transactions");
         return response()->json(\App\Models\Customer::has("transactions")->get()->load("transactions"));     
+    */
     }
 
     /*

@@ -16,9 +16,23 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
+Auth::routes();
+
+
 Route::get('/', function () {
     $customers=App\Models\Customer::all();
-    return view('welcome', compact('customers'));
-});
+    return view('home', compact('customers'));
+})->middleware("auth");
 
 Route::resource('customer', CustomerController::class);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/home', function(){
+    $user=Auth::user();
+    $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+    $success['name'] =  $user->name;
+    return view('home', $success);
+}
+)->name('authhome');
+

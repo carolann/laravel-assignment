@@ -14,9 +14,16 @@ class CustomerController extends Controller
         All returns all the transactions for a customer
         Route:  customertransactions/#id#
     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+		
+    }
     public function index()
     {
-       return \App\Models\Customer::has("transactions")->get()->load("transactions");
+        
+        return \App\Models\Customer::all()->load('job');
+     //  return \App\Models\Customer::has("transactions")->get()->load("transactions");
     }
 
     public function create()
